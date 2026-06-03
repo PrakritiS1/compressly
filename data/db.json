@@ -1,0 +1,38 @@
+{
+  "compressions": [
+    {
+      "id": "d2c40e04-eb5f-4b37-84f8-984318f9a41f",
+      "type": "pdf",
+      "originalName": "DESIGN ANALYSIS OF ALGORITHM.pdf",
+      "originalSize": 168222,
+      "compressedSize": 158013,
+      "savedBytes": 10209,
+      "savedPercent": "6.1",
+      "outputPath": "/compressed/d2c40e04-eb5f-4b37-84f8-984318f9a41f.pdf",
+      "createdAt": "2026-06-03T11:05:49.665Z"
+    }
+  ],
+  "stats": {
+    "totalFiles": 1,
+    "totalSavedBytes": 10209,
+    "totalOriginalBytes": 168222,
+    "byType": {
+      "image": {
+        "count": 0,
+        "saved": 0
+      },
+      "pdf": {
+        "count": 1,
+        "saved": 10209
+      },
+      "zip": {
+        "count": 0,
+        "saved": 0
+      },
+      "folder": {
+        "count": 0,
+        "saved": 0
+      }
+    }
+  }
+}

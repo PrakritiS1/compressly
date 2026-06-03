@@ -1,0 +1,369 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Compressly — All-in-One File Compressor</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+  <link rel="stylesheet" href="/css/style.css" />
+</head>
+<body>
+  <!-- ─── HEADER ─── -->
+  <header class="header">
+    <div class="header-inner">
+      <div class="logo">
+        <div class="logo-icon"><i class="fa-solid fa-compress"></i></div>
+        <span class="logo-text">Compress<em>ly</em></span>
+      </div>
+      <nav class="nav">
+        <a href="#tools" class="nav-link">Tools</a>
+        <a href="#stats" class="nav-link">Stats</a>
+        <a href="#history" class="nav-link">History</a>
+      </nav>
+    </div>
+  </header>
+
+  <!-- ─── HERO ─── -->
+  <section class="hero">
+    <div class="hero-bg">
+      <div class="blob blob-1"></div>
+      <div class="blob blob-2"></div>
+      <div class="blob blob-3"></div>
+      <div class="grid-overlay"></div>
+    </div>
+    <div class="hero-content">
+      <div class="hero-badge"><i class="fa-solid fa-bolt"></i> Fast · Free · No Limits</div>
+      <h1 class="hero-title">
+        Compress<br /><span class="gradient-text">Everything.</span>
+      </h1>
+      <p class="hero-sub">Images, PDFs, ZIPs, Folders — one powerful tool to shrink them all without compromising quality.</p>
+      <a href="#tools" class="cta-btn">
+        <span>Start Compressing</span>
+        <i class="fa-solid fa-arrow-down"></i>
+      </a>
+    </div>
+    <div class="hero-stats">
+      <div class="stat-pill" id="hero-totalFiles"><i class="fa-solid fa-file"></i> <span>0</span> Files</div>
+      <div class="stat-pill" id="hero-totalSaved"><i class="fa-solid fa-database"></i> <span>0 B</span> Saved</div>
+    </div>
+  </section>
+
+  <!-- ─── TOOL TABS ─── -->
+  <section class="tools-section" id="tools">
+    <div class="container">
+      <div class="section-header">
+        <h2>Choose Your Tool</h2>
+        <p>Select a compression type below</p>
+      </div>
+      <div class="tool-tabs">
+        <button class="tab-btn active" data-tab="image">
+          <i class="fa-solid fa-image"></i>
+          <span>Image</span>
+        </button>
+        <button class="tab-btn" data-tab="jpg">
+          <i class="fa-solid fa-file-image"></i>
+          <span>JPG/PNG</span>
+        </button>
+        <button class="tab-btn" data-tab="pdf">
+          <i class="fa-solid fa-file-pdf"></i>
+          <span>PDF</span>
+        </button>
+        <button class="tab-btn" data-tab="zip">
+          <i class="fa-solid fa-file-zipper"></i>
+          <span>ZIP</span>
+        </button>
+        <button class="tab-btn" data-tab="folder">
+          <i class="fa-solid fa-folder-open"></i>
+          <span>Folder</span>
+        </button>
+      </div>
+
+      <!-- ─── IMAGE TAB ─── -->
+      <div class="tab-panel active" id="tab-image">
+        <div class="tool-card">
+          <div class="tool-card-left">
+            <h3><i class="fa-solid fa-image"></i> Image Compressor</h3>
+            <p>Compress JPEG, PNG, WebP images while preserving quality. Supports batch-style one-by-one compression.</p>
+            <div class="settings-group">
+              <label>Output Format</label>
+              <div class="btn-group" id="img-format-group">
+                <button class="opt-btn active" data-val="jpeg">JPEG</button>
+                <button class="opt-btn" data-val="png">PNG</button>
+                <button class="opt-btn" data-val="webp">WebP</button>
+              </div>
+            </div>
+            <div class="settings-group">
+              <label>Quality: <strong id="img-quality-val">80</strong>%</label>
+              <input type="range" min="10" max="100" value="80" class="slider" id="img-quality" />
+              <div class="slider-labels"><span>Smaller</span><span>Better Quality</span></div>
+            </div>
+          </div>
+          <div class="tool-card-right">
+            <div class="drop-zone" id="drop-image" data-type="image">
+              <div class="drop-icon"><i class="fa-solid fa-cloud-arrow-up"></i></div>
+              <div class="drop-text">
+                <strong>Drop image here</strong>
+                <span>or click to browse</span>
+                <span class="drop-hint">JPG, PNG, GIF, WebP · Max 100MB</span>
+              </div>
+              <input type="file" id="input-image" accept="image/*" hidden />
+            </div>
+            <div class="file-preview" id="preview-image" style="display:none"></div>
+          </div>
+        </div>
+        <div class="compress-actions">
+          <button class="compress-btn" id="btn-image" disabled>
+            <i class="fa-solid fa-compress-arrows-alt"></i> Compress Image
+          </button>
+        </div>
+        <div class="result-box" id="result-image" style="display:none"></div>
+      </div>
+
+      <!-- ─── JPG TAB (same as image, different preset) ─── -->
+      <div class="tab-panel" id="tab-jpg">
+        <div class="tool-card">
+          <div class="tool-card-left">
+            <h3><i class="fa-solid fa-file-image"></i> JPG Compressor</h3>
+            <p>Specifically optimized for JPG/JPEG files using mozjpeg encoding for maximum compression at high quality.</p>
+            <div class="settings-group">
+              <label>Quality: <strong id="jpg-quality-val">75</strong>%</label>
+              <input type="range" min="10" max="100" value="75" class="slider" id="jpg-quality" />
+              <div class="slider-labels"><span>Max Compression</span><span>Max Quality</span></div>
+            </div>
+          </div>
+          <div class="tool-card-right">
+            <div class="drop-zone" id="drop-jpg" data-type="jpg">
+              <div class="drop-icon"><i class="fa-solid fa-cloud-arrow-up"></i></div>
+              <div class="drop-text">
+                <strong>Drop JPG here</strong>
+                <span>or click to browse</span>
+                <span class="drop-hint">JPG, JPEG only · Max 100MB</span>
+              </div>
+              <input type="file" id="input-jpg" accept=".jpg,.jpeg" hidden />
+            </div>
+            <div class="file-preview" id="preview-jpg" style="display:none"></div>
+          </div>
+        </div>
+        <div class="compress-actions">
+          <button class="compress-btn" id="btn-jpg" disabled>
+            <i class="fa-solid fa-compress-arrows-alt"></i> Compress JPG
+          </button>
+        </div>
+        <div class="result-box" id="result-jpg" style="display:none"></div>
+      </div>
+
+      <!-- ─── PDF TAB ─── -->
+      <div class="tab-panel" id="tab-pdf">
+        <div class="tool-card">
+          <div class="tool-card-left">
+            <h3><i class="fa-solid fa-file-pdf"></i> PDF Compressor</h3>
+            <p>Reduce PDF file sizes using object stream compression. Ideal for email attachments, sharing, and archiving.</p>
+            <div class="settings-group">
+              <label>Compression Mode</label>
+              <div class="btn-group" id="pdf-mode-group">
+                <button class="opt-btn active" data-val="balanced">Balanced</button>
+                <button class="opt-btn" data-val="max">Maximum</button>
+              </div>
+            </div>
+            <div class="info-box">
+              <i class="fa-solid fa-circle-info"></i>
+              Compression results vary based on PDF content. PDFs with images compress more aggressively.
+            </div>
+          </div>
+          <div class="tool-card-right">
+            <div class="drop-zone" id="drop-pdf" data-type="pdf">
+              <div class="drop-icon"><i class="fa-solid fa-cloud-arrow-up"></i></div>
+              <div class="drop-text">
+                <strong>Drop PDF here</strong>
+                <span>or click to browse</span>
+                <span class="drop-hint">PDF only · Max 100MB</span>
+              </div>
+              <input type="file" id="input-pdf" accept=".pdf" hidden />
+            </div>
+            <div class="file-preview" id="preview-pdf" style="display:none"></div>
+          </div>
+        </div>
+        <div class="compress-actions">
+          <button class="compress-btn" id="btn-pdf" disabled>
+            <i class="fa-solid fa-compress-arrows-alt"></i> Compress PDF
+          </button>
+        </div>
+        <div class="result-box" id="result-pdf" style="display:none"></div>
+      </div>
+
+      <!-- ─── ZIP TAB ─── -->
+      <div class="tab-panel" id="tab-zip">
+        <div class="tool-card">
+          <div class="tool-card-left">
+            <h3><i class="fa-solid fa-file-zipper"></i> ZIP Compressor</h3>
+            <p>Add multiple files and compress them into a single optimized ZIP archive with customizable compression levels.</p>
+            <div class="settings-group">
+              <label>Compression Level: <strong id="zip-level-val">9</strong></label>
+              <input type="range" min="1" max="9" value="9" class="slider" id="zip-level" />
+              <div class="slider-labels"><span>Fastest</span><span>Smallest</span></div>
+            </div>
+            <div class="settings-group">
+              <label>Archive Name</label>
+              <input type="text" class="text-input" id="zip-name" placeholder="my-archive" value="compressed" />
+            </div>
+          </div>
+          <div class="tool-card-right">
+            <div class="drop-zone multi" id="drop-zip" data-type="zip">
+              <div class="drop-icon"><i class="fa-solid fa-cloud-arrow-up"></i></div>
+              <div class="drop-text">
+                <strong>Drop files here</strong>
+                <span>or click to browse</span>
+                <span class="drop-hint">Any file type · Up to 50 files · Max 100MB each</span>
+              </div>
+              <input type="file" id="input-zip" multiple hidden />
+            </div>
+            <div class="file-list" id="list-zip"></div>
+          </div>
+        </div>
+        <div class="compress-actions">
+          <button class="compress-btn" id="btn-zip" disabled>
+            <i class="fa-solid fa-compress-arrows-alt"></i> Create ZIP
+          </button>
+        </div>
+        <div class="result-box" id="result-zip" style="display:none"></div>
+      </div>
+
+      <!-- ─── FOLDER TAB ─── -->
+      <div class="tab-panel" id="tab-folder">
+        <div class="tool-card">
+          <div class="tool-card-left">
+            <h3><i class="fa-solid fa-folder-open"></i> Folder Compressor</h3>
+            <p>Select an entire folder and compress it into a ZIP archive, preserving the original folder structure.</p>
+            <div class="settings-group">
+              <label>Compression Level: <strong id="folder-level-val">9</strong></label>
+              <input type="range" min="1" max="9" value="9" class="slider" id="folder-level" />
+              <div class="slider-labels"><span>Fastest</span><span>Smallest</span></div>
+            </div>
+            <div class="settings-group">
+              <label>Folder Name</label>
+              <input type="text" class="text-input" id="folder-name" placeholder="my-folder" value="folder" />
+            </div>
+          </div>
+          <div class="tool-card-right">
+            <div class="drop-zone folder-drop" id="drop-folder" data-type="folder">
+              <div class="drop-icon"><i class="fa-solid fa-folder-arrow-up"></i></div>
+              <div class="drop-text">
+                <strong>Select Folder</strong>
+                <span>or drag & drop a folder</span>
+                <span class="drop-hint">All files inside will be compressed · Max 200 files</span>
+              </div>
+              <input type="file" id="input-folder" multiple webkitdirectory hidden />
+            </div>
+            <div class="file-list" id="list-folder"></div>
+          </div>
+        </div>
+        <div class="compress-actions">
+          <button class="compress-btn" id="btn-folder" disabled>
+            <i class="fa-solid fa-compress-arrows-alt"></i> Compress Folder
+          </button>
+        </div>
+        <div class="result-box" id="result-folder" style="display:none"></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ─── STATS ─── -->
+  <section class="stats-section" id="stats">
+    <div class="container">
+      <div class="section-header light">
+        <h2>Compression Stats</h2>
+        <p>Real numbers from real compressions</p>
+      </div>
+      <div class="stats-grid">
+        <div class="stat-card">
+          <div class="stat-icon"><i class="fa-solid fa-file-circle-check"></i></div>
+          <div class="stat-val" id="stat-total-files">0</div>
+          <div class="stat-label">Files Compressed</div>
+        </div>
+        <div class="stat-card accent">
+          <div class="stat-icon"><i class="fa-solid fa-hard-drive"></i></div>
+          <div class="stat-val" id="stat-total-saved">0 B</div>
+          <div class="stat-label">Total Space Saved</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-icon"><i class="fa-solid fa-image"></i></div>
+          <div class="stat-val" id="stat-img-count">0</div>
+          <div class="stat-label">Images Compressed</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-icon"><i class="fa-solid fa-file-pdf"></i></div>
+          <div class="stat-val" id="stat-pdf-count">0</div>
+          <div class="stat-label">PDFs Compressed</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-icon"><i class="fa-solid fa-file-zipper"></i></div>
+          <div class="stat-val" id="stat-zip-count">0</div>
+          <div class="stat-label">ZIPs Created</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-icon"><i class="fa-solid fa-folder-open"></i></div>
+          <div class="stat-val" id="stat-folder-count">0</div>
+          <div class="stat-label">Folders Compressed</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ─── HISTORY ─── -->
+  <section class="history-section" id="history">
+    <div class="container">
+      <div class="section-header">
+        <h2>Recent Compressions</h2>
+        <p>Last 10 compression jobs</p>
+      </div>
+      <div class="history-table-wrap">
+        <table class="history-table">
+          <thead>
+            <tr>
+              <th>File</th>
+              <th>Type</th>
+              <th>Original</th>
+              <th>Compressed</th>
+              <th>Saved</th>
+              <th>When</th>
+            </tr>
+          </thead>
+          <tbody id="history-body">
+            <tr class="empty-row">
+              <td colspan="6"><i class="fa-solid fa-inbox"></i> No compressions yet</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </section>
+
+  <!-- ─── FOOTER ─── -->
+  <footer class="footer">
+    <div class="footer-inner">
+      <div class="logo">
+        <div class="logo-icon"><i class="fa-solid fa-compress"></i></div>
+        <span class="logo-text">Compress<em>ly</em></span>
+      </div>
+      <p>Files are automatically deleted after 1 hour. No data is permanently stored.</p>
+      <p class="footer-copy">Built with Node.js · Express · Sharp · Archiver · pdf-lib</p>
+    </div>
+  </footer>
+
+  <!-- ─── PROGRESS OVERLAY ─── -->
+  <div class="progress-overlay" id="progress-overlay" style="display:none">
+    <div class="progress-modal">
+      <div class="progress-spinner">
+        <svg viewBox="0 0 50 50"><circle cx="25" cy="25" r="20" fill="none" stroke-width="4"/></svg>
+      </div>
+      <div class="progress-title" id="progress-title">Compressing...</div>
+      <div class="progress-bar-wrap"><div class="progress-bar" id="progress-bar"></div></div>
+      <div class="progress-sub" id="progress-sub">Please wait</div>
+    </div>
+  </div>
+
+  <script src="/js/app.js"></script>
+</body>
+</html>
