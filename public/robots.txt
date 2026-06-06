@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://compressly-u4g5.onrender.com/sitemap.xml
